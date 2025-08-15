@@ -139,10 +139,34 @@ void entity_on_death(Simulation *sim, Entity const &ent) {
         for (uint32_t i = num_left; i < max_possible; ++i)
             camera.set_inventory(i, PetalID::kNone); //don't track kNone
         //fill with basics
-        for (uint32_t i = num_left; i < loadout_slots_at_level(respawn_level); ++i) {
-            PetalTracker::add_petal(sim, PetalID::kTricac);
-            camera.set_inventory(i, PetalID::kTricac);
-        }
+// fill with basics (give one of each: Tricac, Tringer, Bubble, Azalea, Entennae,
+// then fill any remaining slots with Tricac)
+{
+    PetalID::T basics[] = {
+        PetalID::kAntennae,
+        PetalID::kTringer,
+        PetalID::kBubble,
+        PetalID::kAzalea,
+        PetalID::kTricac,
+        PetalID::kTringer
+    };
+    const uint32_t basics_count = sizeof(basics) / sizeof(basics[0]);
+    uint32_t slots = loadout_slots_at_level(respawn_level);
+    uint32_t idx = num_left;
+
+    // give one of each, in order, as long as there are slots
+    for (uint32_t p = 0; p < basics_count && idx < slots; ++p, ++idx) {
+        PetalTracker::add_petal(sim, basics[p]);
+        camera.set_inventory(idx, basics[p]);
+    }
+
+    // if there are still slots left, fill them with Tricac (same behavior as before)
+    for (; idx < slots; ++idx) {
+        PetalTracker::add_petal(sim, PetalID::kTricac);
+        camera.set_inventory(idx, PetalID::kTricac);
+    }
+}
+
     } else if (ent.has_component(kDrop)) {
         if (BIT_AT(ent.flags, EntityFlags::kIsDespawning))
             PetalTracker::remove_petal(sim, ent.drop_id);

@@ -95,7 +95,7 @@ std::array const MAP = std::to_array<struct ZoneDefinition>({
     {
         .x = 32500,
         .y = 2000,
-        .w = 2500,
+        .w = 5000,
         .h = 4000,
         .density = 1,
         .drop_multiplier = 0.025,
@@ -115,9 +115,9 @@ std::array const MAP = std::to_array<struct ZoneDefinition>({
         .name = "???"
     },
         {
-        .x = 35000,
+        .x = 37500,
         .y = 2000,
-        .w = 2500,
+        .w = 5000,
         .h = 4000,
         .density = 2,
         .drop_multiplier = 0.025,

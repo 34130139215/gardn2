@@ -60,7 +60,7 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
         10.0, 10.0, 10.0, 1.0, 1, RarityID::kRare, {
         .icon_angle = 1,
     }},
-    {"Bubble", "You can right click to pop it and propel your flower",
+    {"Bubble", "Physics are for the weak.",
         1.0, 0.0, 12.0, 2.0, 1, RarityID::kRare, {
         .secondary_reload = 0.4,
         .defend_only = 1,
@@ -290,7 +290,7 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
         "Ladybug",
         "Much larger, but still cute... if left unprovoked.",
         RarityID::kLegendary, {1400.0}, 10.0, {95.0}, 400, {
-        PetalID::kYinYang, PetalID::kAzalea, PetalID::kEntennae, PetalID::kAntennae, PetalID::kObserver
+        PetalID::kYinYang, PetalID::kAzalea, PetalID::kAntennae, PetalID::kObserver
     }, {}},
     {
         "Hornet",
