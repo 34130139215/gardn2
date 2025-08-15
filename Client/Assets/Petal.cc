@@ -245,6 +245,22 @@ void draw_static_petal_single(PetalID::T id, Renderer &ctx) {
             ctx.stroke();
             break;
         }
+        case PetalID::kEntennae: {
+            ctx.round_line_cap();
+            ctx.round_line_join();
+            ctx.set_stroke(0xff333333);
+            ctx.set_line_width(3);
+            ctx.begin_path();
+            ctx.move_to(5, 12.5);
+            ctx.qcurve_to(10, -2.5, 15, -12.5);
+            ctx.qcurve_to(5, -2.5, 5, 12.5);
+            ctx.move_to(-5, 12.5);
+            ctx.qcurve_to(-10, -2.5, -15, -12.5);
+            ctx.qcurve_to(-5, -2.5, -5, 12.5);
+            ctx.fill();
+            ctx.stroke();
+            break;
+        }
         case PetalID::kObserver: {
             ctx.round_line_cap();
             ctx.round_line_join();

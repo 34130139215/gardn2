@@ -93,9 +93,9 @@ std::array const MAP = std::to_array<struct ZoneDefinition>({
         .name = "Hard"
     },
     {
-        .x = 35000,
+        .x = 32500,
         .y = 2000,
-        .w = 5000,
+        .w = 2500,
         .h = 4000,
         .density = 1,
         .drop_multiplier = 0.025,
@@ -115,9 +115,9 @@ std::array const MAP = std::to_array<struct ZoneDefinition>({
         .name = "???"
     },
         {
-        .x = 30000,
+        .x = 35000,
         .y = 2000,
-        .w = 5000,
+        .w = 2500,
         .h = 4000,
         .density = 2,
         .drop_multiplier = 0.025,
@@ -130,6 +130,7 @@ std::array const MAP = std::to_array<struct ZoneDefinition>({
             { MobID::kEvilCentipede, 10000 },
             { MobID::kMassiveBeetle, 12500 },
             { MobID::kAntHole, 3000 },
+            { MobID::kFatDarkLadybug, 100 },
             { MobID::kSquare, 10 }
         },
         .difficulty = 4,

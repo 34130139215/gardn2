@@ -20,6 +20,8 @@ float const BASE_HEALTH = 100.0f;
 float const BASE_BODY_DAMAGE = 25.0f;
 
 struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
+    // health damage radius reload count
+    // rarity health damage radius xp
     {"None", "How can you see this?",
         0.0, 0.0, 0.0, 1.0, 0, RarityID::kCommon, {}},
     {"Basic", "A nice petal, not too strong but not too weak",
@@ -57,17 +59,16 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
     {"Dandelion", "Its interesting properties prevent healing effects on affected units",
         10.0, 10.0, 10.0, 1.0, 1, RarityID::kRare, {
         .icon_angle = 1,
-        .rotation_style = PetalAttributes::kFollowRot 
     }},
     {"Bubble", "You can right click to pop it and propel your flower",
         1.0, 0.0, 12.0, 2.0, 1, RarityID::kRare, {
-        .secondary_reload = 0.5,
+        .secondary_reload = 0.4,
         .defend_only = 1,
     }},
     {"Faster", "It's so light it makes your other petals spin faster",
         5.0, 7.0, 7.0, 0.5, 1, RarityID::kRare, {}},
     {"Rock", "Even more durable, but slower to recharge",
-        100.0, 10.0, 12.0, 7.5, 1, RarityID::kRare, {}},
+        100.0, 15.0, 12.0, 95.5, 1, RarityID::kRare, {}},
     {"Cactus", "Not very strong, but somehow increases your maximum health",
         15.0, 5.0, 15.0, 1.0, 1, RarityID::kRare, {}},
     {"Web", "It's really sticky",
@@ -166,6 +167,8 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
     }},
     {"Antennae", "Allows your flower to sense foes from farther away",
         0.0, 0.0, 12.5, 0.0, 0, RarityID::kLegendary, {}},
+    {"Antennae", "Allows your flower to sense foes from farther away",
+        0.0, 0.0, 12.5, 0.0, 0, RarityID::kEpic, {}},
     {"Cactus", "Not very strong, but somehow increases your maximum health",
         15.0, 5.0, 10.0, 1.0, 3, RarityID::kLegendary, {
         .clump_radius = 10,
@@ -232,19 +235,19 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
     {
         "Baby Ant",
         "Weak and defenseless, but big dreams.",
-        RarityID::kCommon, {10.0}, 10.0, {14.0}, 1, {
+        RarityID::kCommon, {10.0}, 10.0, {14.0}, 8, {
         PetalID::kLight, PetalID::kLeaf, PetalID::kTwin, PetalID::kRice, PetalID::kTriplet
     }, {}},
     {
         "Worker Ant",
         "It's temperamental, probably from working all the time.",
-        RarityID::kCommon, {25.0}, 10.0, {14.0}, 3, {
+        RarityID::kCommon, {25.0}, 10.0, {14.0}, 4, {
         PetalID::kLight, PetalID::kLeaf, PetalID::kTwin, PetalID::kCorn, PetalID::kBone
     }, {}},
     {
         "Soldier Ant",
         "It's got wings and it's ready to use them.",
-        RarityID::kUnusual, {40.0}, 10.0, {14.0}, 5, {
+        RarityID::kUnusual, {40.0}, 10.0, {14.0}, 6, {
         PetalID::kTwin, PetalID::kIris, PetalID::kWing, PetalID::kFaster, PetalID::kTriplet
     }, {}},
     {
@@ -281,13 +284,19 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
         "Ladybug",
         "Cute and harmless... if left unprovoked.",
         RarityID::kUnusual, {35.0}, 10.0, {30.0}, 5, {
-        PetalID::kDahlia, PetalID::kWing, PetalID::kYinYang, PetalID::kAzalea
+        PetalID::kDahlia, PetalID::kWing, PetalID::kYinYang, PetalID::kEntennae, PetalID::kAzalea
+    }, {}},
+    {
+        "Ladybug",
+        "Much larger, but still cute... if left unprovoked.",
+        RarityID::kLegendary, {1400.0}, 10.0, {95.0}, 400, {
+        PetalID::kYinYang, PetalID::kAzalea, PetalID::kEntennae, PetalID::kAntennae, PetalID::kObserver
     }, {}},
     {
         "Hornet",
         "These aren't quite as nice as the little bees.",
         RarityID::kUnusual, {40.0}, 40.0, {40.0}, 12, {
-        PetalID::kDandelion, PetalID::kMissile, PetalID::kWing, PetalID::kBubble, PetalID::kAntennae
+        PetalID::kDandelion, PetalID::kMissile, PetalID::kWing, PetalID::kBubble, PetalID::kAntennae, PetalID::kEntennae
     }, { .aggro_radius = 600 }},
     {
         "Cactus",
@@ -340,7 +349,7 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
     {
         "Spider",
         "Spooky.",
-        RarityID::kUnusual, {35.0}, 10.0, {15.0}, 8, {
+        RarityID::kUnusual, {35.0}, 3.5, {15.0}, 8, {
         PetalID::kStinger, PetalID::kWeb, PetalID::kFaster, PetalID::kTriweb
     }, { .poison_damage = { 5.0, 3.0 } }},
     {
@@ -352,7 +361,7 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
     {
         "Queen Ant",
         "You must have done something really bad if she's chasing you.",
-        RarityID::kRare, {350.0}, 10.0, {25.0}, 15, {
+        RarityID::kRare, {350.0}, 10.0, {30.0}, 15, {
         PetalID::kTwin, PetalID::kIris, PetalID::kWing, PetalID::kAntEgg, PetalID::kTringer
     }, { .aggro_radius = 750 }},
     {

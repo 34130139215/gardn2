@@ -400,6 +400,7 @@ void tick_ai_behavior(Simulation *sim, Entity &ent) {
             break;
         case MobID::kWorkerAnt:
         case MobID::kDarkLadybug:
+        case MobID::kFatDarkLadybug:
         case MobID::kShinyLadybug:
             tick_default_neutral(sim, ent);
             break;

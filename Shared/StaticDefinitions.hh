@@ -58,6 +58,7 @@ namespace PetalID {
         kTringer,
         kTriweb,
         kAntennae,
+        kEntennae,
         kTricac,
         kHeaviest,
         kThirdEye,
@@ -91,6 +92,7 @@ namespace MobID {
         kMassiveLadybug,
         kMassiveBeetle,
         kDarkLadybug,
+        kFatDarkLadybug,
         kHornet,
         kCactus,
         kRock,
@@ -189,7 +191,7 @@ struct PetalAttributes {
     float secondary_reload = 0;
     float constant_heal = 0;
     float burst_heal = 0;
-    float mass = 0.1;
+    float mass = 0.15;
     uint8_t defend_only = 0;
     float icon_angle = 0;
     uint8_t rotation_style = kPassiveRot;

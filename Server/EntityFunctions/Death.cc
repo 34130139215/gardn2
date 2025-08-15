@@ -140,8 +140,8 @@ void entity_on_death(Simulation *sim, Entity const &ent) {
             camera.set_inventory(i, PetalID::kNone); //don't track kNone
         //fill with basics
         for (uint32_t i = num_left; i < loadout_slots_at_level(respawn_level); ++i) {
-            PetalTracker::add_petal(sim, PetalID::kBasic);
-            camera.set_inventory(i, PetalID::kBasic);
+            PetalTracker::add_petal(sim, PetalID::kTricac);
+            camera.set_inventory(i, PetalID::kTricac);
         }
     } else if (ent.has_component(kDrop)) {
         if (BIT_AT(ent.flags, EntityFlags::kIsDespawning))

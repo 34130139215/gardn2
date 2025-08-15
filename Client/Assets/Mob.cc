@@ -154,6 +154,7 @@ void draw_static_mob(MobID::T mob_id, Renderer &ctx, MobRenderAttributes attr) {
         case MobID::kLadybug:
         case MobID::kMassiveLadybug:
         case MobID::kDarkLadybug:
+        case MobID::kFatDarkLadybug:
         case MobID::kShinyLadybug:
             ctx.scale(radius / 30);
             if (mob_id == MobID::kDarkLadybug) SET_BASE_COLOR(0xff962921)

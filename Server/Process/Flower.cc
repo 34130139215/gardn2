@@ -16,6 +16,7 @@ struct PlayerBuffs {
     float extra_health;
     uint8_t yinyang_count;
     uint8_t has_antennae : 1;
+    uint8_t has_entennae : 1;
     uint8_t has_observer : 1;
     uint8_t is_poisonous : 1;
     uint8_t has_cutter : 1;
@@ -33,6 +34,9 @@ static struct PlayerBuffs _get_petal_passive_buffs(Simulation *sim, Entity &play
         if (slot_petal_id == PetalID::kAntennae) {
             buffs.has_antennae = 1;
             buffs.extra_vision = fclamp(0.4,buffs.extra_vision,1);
+        } else if (slot_petal_id == PetalID::kEntennae) {
+            buffs.has_entennae = 1;
+            buffs.extra_vision = fclamp(0.6,buffs.extra_vision,1);
         } else if (slot_petal_id == PetalID::kObserver) {
             buffs.has_observer = 1;
             buffs.extra_vision = 0.75;
@@ -226,6 +230,8 @@ void tick_player_behavior(Simulation *sim, Entity &player) {
     if (buffs.extra_range > 0)
         player.set_face_flags(player.face_flags | (1 << FaceFlags::kThirdEye));
     if (buffs.has_antennae)
+        player.set_face_flags(player.face_flags | (1 << FaceFlags::kAntennae));
+    if (buffs.has_entennae)
         player.set_face_flags(player.face_flags | (1 << FaceFlags::kAntennae));
     if (buffs.has_observer)
         player.set_face_flags(player.face_flags | (1 << FaceFlags::kObserver));
