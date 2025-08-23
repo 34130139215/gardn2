@@ -46,7 +46,6 @@ Element *Ui::make_title_input_box() {
             [](){ return Game::socket.ready; }
         ),
         new Ui::Element(0,20),
-        new Ui::StaticText(16, "open-source florr.io pvp clone"),
     }, 0, 0, { .animate = [](Element *elt, Renderer &ctx){}, .should_render = [](){ return Game::should_render_title_ui(); } });
     return title;
 }
@@ -215,46 +214,54 @@ Element *Ui::make_debug_stats() {
     return elt;
 }
 
-Element *Ui::make_github_link_button() {
+Element *Ui::make_discord_link_button() {
     Element *elt = new Ui::HContainer({
         new Ui::Button(50, 50, 
             new Ui::StaticIcon([](Element *elt, Renderer &ctx){
                 ctx.scale(elt->width / 20);
                 ctx.set_fill(0xfff1f1f1);
+
                 ctx.begin_path();
-                ctx.move_to(0.00, -10.00);
-                ctx.bcurve_to(5.52, -10.00, 10.00, -5.41, 10.00, 0.25);
-                ctx.bcurve_to(10.00, 4.78, 7.14, 8.62, 3.17, 9.98);
-                ctx.bcurve_to(2.66, 10.08, 2.48, 9.76, 2.48, 9.49);
-                ctx.bcurve_to(2.48, 9.15, 2.49, 8.05, 2.49, 6.67);
-                ctx.bcurve_to(2.49, 5.72, 2.17, 5.09, 1.81, 4.78);
-                ctx.bcurve_to(4.04, 4.52, 6.38, 3.66, 6.38, -0.28);
-                ctx.bcurve_to(6.38, -1.40, 5.99, -2.32, 5.35, -3.03);
-                ctx.bcurve_to(5.45, -3.29, 5.80, -4.34, 5.25, -5.75);
-                ctx.bcurve_to(5.25, -5.75, 4.41, -6.02, 2.50, -4.70);
-                ctx.bcurve_to(1.71, -4.92, 0.85, -5.04, 0.00, -5.04);
-                ctx.bcurve_to(-0.85, -5.04, -1.71, -4.92, -2.50, -4.70);
-                ctx.bcurve_to(-4.41, -6.02, -5.25, -5.75, -5.25, -5.75);
-                ctx.bcurve_to(-5.80, -4.34, -5.45, -3.29, -5.35, -3.03);
-                ctx.bcurve_to(-5.99, -2.32, -6.38, -1.40, -6.38, -0.28);
-                ctx.bcurve_to(-6.38, 3.65, -4.05, 4.53, -1.82, 4.79);
-                ctx.bcurve_to(-2.11, 5.04, -2.37, 5.49, -2.46, 6.16);
-                ctx.bcurve_to(-3.03, 6.42, -4.48, 6.87, -5.37, 5.30);
-                ctx.bcurve_to(-5.37, 5.30, -5.90, 4.32, -6.90, 4.25);
-                ctx.bcurve_to(-6.90, 4.25, -7.88, 4.23, -6.97, 4.87);
-                ctx.bcurve_to(-6.97, 4.87, -6.32, 5.18, -5.86, 6.37);
-                ctx.bcurve_to(-5.86, 6.37, -5.27, 8.20, -2.49, 7.58);
-                ctx.bcurve_to(-2.49, 8.44, -2.48, 9.24, -2.48, 9.49);
-                ctx.bcurve_to(-2.48, 9.76, -2.66, 10.08, -3.16, 9.98);
-                ctx.bcurve_to(-7.13, 8.63, -10.00, 4.78, -10.00, 0.25);
-                ctx.bcurve_to(-10.00, -5.41, -5.52, -10.00, 0.00, -10.00);
+                ctx.move_to(8.26, -1.80);
+                ctx.bcurve_to(7.66, -2.00, 7.04, -2.17, 6.39, -2.29);
+                ctx.bcurve_to(6.27, -2.06, 6.13, -1.77, 6.05, -1.55);
+                ctx.bcurve_to(5.40, -1.67, 4.74, -1.67, 4.09, -1.55);
+                ctx.bcurve_to(4.01, -1.77, 3.87, -2.06, 3.75, -2.29);
+                ctx.bcurve_to(3.10, -2.17, 2.48, -2.00, 1.88, -1.80);
+                ctx.bcurve_to(0.90, -0.41, 0.58, 0.96, 0.70, 2.30);
+                ctx.bcurve_to(1.56, 2.91, 2.41, 3.32, 3.26, 3.58);
+                ctx.bcurve_to(3.46, 3.29, 3.64, 2.99, 3.81, 2.66);
+                ctx.bcurve_to(3.51, 2.57, 3.21, 2.47, 2.92, 2.33);
+                ctx.bcurve_to(3.00, 2.26, 3.07, 2.18, 3.15, 2.11);
+                ctx.bcurve_to(4.52, 2.72, 5.90, 2.72, 7.26, 2.11);
+                ctx.bcurve_to(7.34, 2.18, 7.41, 2.26, 7.49, 2.33);
+                ctx.bcurve_to(7.20, 2.47, 6.90, 2.57, 6.60, 2.66);
+                ctx.bcurve_to(6.78, 2.99, 6.96, 3.29, 7.16, 3.58);
+                ctx.bcurve_to(8.01, 3.32, 8.86, 2.91, 9.72, 2.30);
+                ctx.bcurve_to(9.86, 0.95, 9.50, -0.41, 8.26, -1.80);
+                ctx.close_path();
+
+                ctx.move_to(4.06, 1.58);
+                ctx.bcurve_to(3.69, 1.58, 3.40, 1.21, 3.40, 0.74);
+                ctx.bcurve_to(3.40, 0.27, 3.69, -0.10, 4.06, -0.10);
+                ctx.bcurve_to(4.43, -0.10, 4.72, 0.27, 4.72, 0.74);
+                ctx.bcurve_to(4.72, 1.21, 4.43, 1.58, 4.06, 1.58);
+                ctx.close_path();
+
+                ctx.move_to(6.36, 1.58);
+                ctx.bcurve_to(5.99, 1.58, 5.70, 1.21, 5.70, 0.74);
+                ctx.bcurve_to(5.70, 0.27, 5.99, -0.10, 6.36, -0.10);
+                ctx.bcurve_to(6.73, -0.10, 7.02, 0.27, 7.02, 0.74);
+                ctx.bcurve_to(7.02, 1.21, 6.73, 1.58, 6.36, 1.58);
+                ctx.close_path();
+
                 ctx.fill();
             }, 40, 40),
             [](Element *elt, uint8_t e){
-                if (e == Ui::kClick) DOM::open_page("https://github.com/trigonal-bacon/gardn/");
+                if (e == Ui::kClick) DOM::open_page("https://discord.gg/NkcStwd5tG");
             },
             nullptr,
-            { .fill = 0xff333333, .line_width = 4, .round_radius = 4 }
+            { .fill = 0xff5865F2, .line_width = 4, .round_radius = 4 }
         )
     }, 10, 10, { .h_justify = Style::Right, .v_justify = Style::Top });
     return elt;

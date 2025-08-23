@@ -51,12 +51,14 @@ namespace PetalID {
         kBlueIris,
         kPollen,
         kPoisonPeas,
+        kFatPeas,
         kBeetleEgg,
         kAzalea,
         kStick,
         kTringer,
         kTriweb,
         kAntennae,
+        kEntennae,
         kTricac,
         kHeaviest,
         kThirdEye,
@@ -74,6 +76,7 @@ namespace PetalID {
         kBone,
         kYucca,
         kCorn,
+        kSoil,
         kNumPetals
     };
 };
@@ -90,6 +93,7 @@ namespace MobID {
         kMassiveLadybug,
         kMassiveBeetle,
         kDarkLadybug,
+        kFatDarkLadybug,
         kHornet,
         kCactus,
         kRock,

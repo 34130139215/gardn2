@@ -17,6 +17,8 @@ float const BASE_FOV = 0.9f;
 float const BASE_HEALTH = 100.0f;
 float const BASE_BODY_DAMAGE = 25.0f;
 
+    // health damage radius reload count
+    // rarity health damage radius xp
 struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
     {"None", "How can you see this?",
         0.0, 0.0, 0.0, 1.0, 0, RarityID::kCommon, {}},
@@ -54,6 +56,7 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
     }},
     {"Dandelion", "Its interesting properties prevent healing effects on affected units",
         10.0, 10.0, 10.0, 1.0, 1, RarityID::kRare, {
+        .secondary_reload = 1.0, 
         .icon_angle = 1,
         .rotation_style = PetalAttributes::kFollowRot 
     }},
@@ -124,9 +127,16 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
         .defend_only = 1,
         .poison_damage = { 20.0, 0.5 }
     }},
+    {"Peas", "4 in 1 deal, now with a secret ingredient: poison",
+        5.0, 2.0, 7.0, 2.0, 4, RarityID::kLegendary, {
+        .clump_radius = 10,
+        .secondary_reload = 0.1,
+        .defend_only = 1,
+        .poison_damage = { 27.5, 1 }
+    }},
     {"Egg", "Something interesting might pop out of this",
-        50.0, 1.0, 15.0, 1.0, 1, RarityID::kEpic, { 
-        .secondary_reload = 3.5,
+        50.0, 1.0, 15.0, 1.0, 1, RarityID::kLegendary, { 
+        .secondary_reload = 2.75,
         .defend_only = 1,
         .rotation_style = PetalAttributes::kNoRot,
         .spawns = MobID::kBeetle
@@ -217,6 +227,9 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
         500.0, 2.5, 16.0, 10.0, 1, RarityID::kEpic, {
         .icon_angle = 0.5
     }},
+    {"Soil", "The bigger, the better",
+        15.0, 3.0, 14.0, 2.0, 1, RarityID::kEpic, {
+    }}
 };
 
 struct MobData const MOB_DATA[MobID::kNumMobs] = {
@@ -275,6 +288,12 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
         PetalID::kDahlia, PetalID::kWing, PetalID::kYinYang, PetalID::kAzalea
     }, {}},
     {
+        "Massive Ladybug",
+        "Much larger, but still cute... if left unprovoked.",
+        RarityID::kLegendary, {1400.0}, 10.0, {95.0}, 666, {
+        PetalID::kYinYang, PetalID::kAzalea, PetalID::kAntennae, PetalID::kObserver
+    }, {}},
+    {
         "Hornet",
         "These aren't quite as nice as the little bees.",
         RarityID::kUnusual, {40.0}, 40.0, {40.0}, 12, {
@@ -308,7 +327,7 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
         "Evil Centipede",
         "This one loves flowers.",
         RarityID::kRare, {50.0}, 10.0, {35.0}, 3, {
-        PetalID::kIris, PetalID::kPoisonPeas, PetalID::kBlueIris
+        PetalID::kIris, PetalID::kPoisonPeas, PetalID::kBlueIris, PetalID::kFatPeas
     }, { .segments = 10, .poison_damage = { 5.0, 2.0 } }},
     {
         "Desert Centipede",
@@ -338,7 +357,7 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
         "Ant Hole",
         "Ants go in, and come out. Can't explain that.",
         RarityID::kRare, {500.0}, 10.0, {45.0}, 25, {
-        PetalID::kIris, PetalID::kWing, PetalID::kAntEgg, PetalID::kTriplet
+        PetalID::kIris, PetalID::kWing, PetalID::kTriplet, PetalID::kSoil, PetalID::kAntEgg
     }, { .stationary = 1 }},
     {
         "Queen Ant",

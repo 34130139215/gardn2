@@ -17,6 +17,7 @@ struct PlayerBuffs {
     uint8_t yinyang_count;
     uint8_t is_poisonous : 1;
     uint8_t has_cutter : 1;
+    uint8_t has_soil : 1;
     uint8_t equip_flags;
 };
 
@@ -40,6 +41,9 @@ static struct PlayerBuffs _get_petal_passive_buffs(Simulation *sim, Entity &play
             buffs.extra_range = 75;
         } else if (slot_petal_id == PetalID::kCutter) {
             buffs.has_cutter = 1;
+        } else if (slot_petal_id == PetalID::kSoil) {
+            buffs.has_soil = 1;
+            buffs.extra_health += 30; 
         } else if (slot_petal_id == PetalID::kYinYang) {
             ++buffs.yinyang_count;
         }
@@ -50,6 +54,8 @@ static struct PlayerBuffs _get_petal_passive_buffs(Simulation *sim, Entity &play
             buffs.heal += petal_data.attributes.constant_heal / TPS;
         if (slot_petal_id == PetalID::kFaster) 
             buffs.extra_rot += 1.0;
+        else if (slot_petal_id == PetalID::kHeaviest)
+            buffs.extra_rot -= 0.25;
         else if (slot_petal_id == PetalID::kCactus) 
             buffs.extra_health += 20;
         else if (slot_petal_id == PetalID::kTricac) 
@@ -93,6 +99,7 @@ void tick_player_behavior(Simulation *sim, Entity &player) {
     if (!player.has_component(kMob)) {
         player.max_health = hp_at_level(score_to_level(player.score)) + buffs.extra_health;
         if (buffs.has_cutter) player.damage = BASE_BODY_DAMAGE + 20;
+        else if (buffs.has_soil) player.radius = BASE_FLOWER_RADIUS + 5;
         else player.damage = BASE_BODY_DAMAGE;
     }
     player.health = health_ratio * player.max_health;

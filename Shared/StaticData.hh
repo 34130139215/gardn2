@@ -93,10 +93,10 @@ inline std::array const MAP_DATA = std::to_array<struct ZoneDefinition>({
         .color = 0xffb06655,
         .name = "Hard"
     },
-    {
+        {
         .left = 30000,
         .top = 0,
-        .right = 40000,
+        .right = 35000,
         .bottom = 4000,
         .density = 1,
         .drop_multiplier = 0.025,
@@ -114,7 +114,30 @@ inline std::array const MAP_DATA = std::to_array<struct ZoneDefinition>({
         .difficulty = 3,
         .color = 0xff777777,
         .name = "???"
-    }
+    },
+    {
+        .left = 35000,
+        .top = 0,
+        .right = 40000,
+        .bottom = 4000,
+        .density = 2,
+        .drop_multiplier = 0.025,
+        .spawns = {
+            { MobID::kDarkLadybug, 90000 },
+            { MobID::kBeetle, 100000 },
+            { MobID::kHornet, 150000 },
+            { MobID::kSpider, 150000 },
+            { MobID::kBoulder, 80000 },
+            { MobID::kEvilCentipede, 10000 },
+            { MobID::kMassiveBeetle, 12500 },
+            { MobID::kAntHole, 3000 },
+            { MobID::kFatDarkLadybug, 100 },
+            { MobID::kSquare, 10 }
+        },
+        .difficulty = 4,
+        .color = 0xff777777,
+        .name = "!!"
+    },
 });
 
 std::array const ANTHOLE_SPAWNS = std::to_array<StaticArray<MobID::T, 3>>({

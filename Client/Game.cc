@@ -54,7 +54,7 @@ void Game::init() {
     reset();
     title_ui_window.add_child(
         [](){ 
-            Ui::Element *elt = new Ui::StaticText(60, "the gardn project");
+            Ui::Element *elt = new Ui::StaticText(60, "gardn.pro");
             elt->x = 0;
             elt->y = -270;
             return elt;
@@ -82,7 +82,7 @@ void Game::init() {
         Ui::make_changelog()
     );
     title_ui_window.add_child(
-        Ui::make_github_link_button()
+        Ui::make_discord_link_button()
     );
     game_ui_window.add_child(
         Ui::make_death_main_screen()
@@ -108,7 +108,7 @@ void Game::init() {
     );
     game_ui_window.add_child(
         new Ui::HContainer({
-            new Ui::StaticText(20, "the gardn project")
+            new Ui::StaticText(20, "gardn.pro")
         }, 20, 0, { .h_justify = Ui::Style::Left, .v_justify = Ui::Style::Top })
     );
     Ui::make_petal_tooltips();
