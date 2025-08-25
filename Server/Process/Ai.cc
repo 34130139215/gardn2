@@ -401,6 +401,7 @@ void tick_ai_behavior(Simulation *sim, Entity &ent) {
             break;
         case MobID::kWorkerAnt:
         case MobID::kDarkLadybug:
+        case MobID::kManbug:
         case MobID::kShinyLadybug:
             tick_default_neutral(sim, ent);
             break;
@@ -427,6 +428,16 @@ void tick_ai_behavior(Simulation *sim, Entity &ent) {
                 spawned.set_parent(ent.parent);
             }
             tick_default_aggro(sim, ent, 0.95);
+            break;
+        case MobID::kFatDarkLadybug:
+            if(ent.lifetime % (4 * TPS) == 0) {
+                Vector behind;
+                behind.unit_normal(ent.angle + M_PI);
+                behind *= ent.radius;
+                Entity &spawned = alloc_mob(sim, MobID::kDarkLadybug, ent.x + behind.x, ent.y + behind.y, ent.team);
+                spawned.set_parent(ent.parent);
+            }
+            tick_default_neutral(sim, ent);
             break;
         case MobID::kHornet:
             tick_hornet_aggro(sim, ent);
