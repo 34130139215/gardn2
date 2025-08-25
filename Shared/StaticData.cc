@@ -54,6 +54,7 @@ struct PetalData const PETAL_DATA[PetalID::kNumPetals] = {
     }},
     {"Dandelion", "Its interesting properties prevent healing effects on affected units",
         10.0, 10.0, 10.0, 1.0, 1, RarityID::kRare, {
+        .secondary_reload = 0.5,
         .icon_angle = 1,
         .rotation_style = PetalAttributes::kFollowRot 
     }},
@@ -278,13 +279,12 @@ struct MobData const MOB_DATA[MobID::kNumMobs] = {
         "Manbug",
         "It's always provoked.",
         RarityID::kRare, {35.0}, 10.0, {30.0}, 25, {
-        PetalID::kWing, PetalID::kYinYang, PetalID::kAzalea, PetalID::kObserver
     }, {}},
     {
         "Massive Ladybug",
         "Much larger, but still cute... if left unprovoked.",
-        RarityID::kLegendary, {1000.0}, 10.0, {95.0}, 625, {
-        PetalID::kBubble, PetalID::kAzalea, PetalID::kObserver
+        RarityID::kLegendary, {800.0, 1000.0}, 10.0, {85.0, 95.0}, 625, {
+        PetalID::kBubble, PetalID::kYinYang, PetalID::kAzalea, PetalID::kObserver
     }, {}},
     {
         "Hornet",

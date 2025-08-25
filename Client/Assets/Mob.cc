@@ -189,6 +189,7 @@ void draw_static_mob(MobID::T mob_id, Renderer &ctx, MobRenderAttributes attr) {
                 else ctx.set_fill(0xff111111);
                 SeedGenerator gen(seed * 374572 + 46237);
                 uint32_t ct = 1 + gen.next() * 7;
+                if (ct < 2) ct = 2;
                 for (uint32_t i = 0; i < ct; ++i) {
                     ctx.begin_path();
                     ctx.arc(gen.binext()*30,gen.binext()*30,4+gen.next()*5);

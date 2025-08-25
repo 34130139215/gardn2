@@ -32,6 +32,13 @@ static Element *make_entries(std::initializer_list<std::string const> contents) 
 
 static Element *make_changelog_contents() {
     Element *elt = new Ui::VContainer({
+        make_date("August 25th 2025"),
+        make_entries({
+            "Made Anti-Chinese propaganda bannable",
+            "Added a two new mobs. You can find them in the new !!! zone",
+            "Some QOL and balance changes",
+            "Created an official Discord server. You can join it at discord.gg/florr"
+        }),
         make_date("August 10th 2025"),
         make_entries({
             "Added TDM",
